@@ -28,7 +28,8 @@ class _EasyImageViewPagerState extends State<EasyImageViewPager> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
+    return SafeArea(
+        child: PageView.builder(
       physics: _pagingEnabled
           ? const PageScrollPhysics()
           : const NeverScrollableScrollPhysics(),
@@ -47,6 +48,6 @@ class _EasyImageViewPagerState extends State<EasyImageViewPager> {
           },
         );
       },
-    );
+    ));
   }
 }

@@ -3,18 +3,16 @@
 library easy_image_viewer;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'src/easy_image_provider.dart';
 import 'src/easy_image_view_pager.dart';
 import 'src/single_image_provider.dart';
 
 export 'src/easy_image_provider.dart' show EasyImageProvider;
-export 'src/single_image_provider.dart' show SingleImageProvider;
-export 'src/multi_image_provider.dart' show MultiImageProvider;
-
 export 'src/easy_image_view.dart' show EasyImageView;
 export 'src/easy_image_view_pager.dart' show EasyImageViewPager;
+export 'src/multi_image_provider.dart' show MultiImageProvider;
+export 'src/single_image_provider.dart' show SingleImageProvider;
 
 /// Shows the given [imageProvider] in a full-screen [Dialog].
 /// Setting [immersive] to false will prevent the top and bottom bars from being hidden.
@@ -48,10 +46,10 @@ Future<Dialog?> showImageViewerPager(
     void Function(int)? onViewerDismissed,
     bool useSafeArea = false,
     String closeButtonTooltip = 'Close'}) {
-  if (immersive) {
-    // Hide top and bottom bars
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  }
+  // if (immersive) {
+  //   // Hide top and bottom bars
+  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+  // }
 
   void Function()? internalPageChangeListener;
   final pageController =
@@ -79,8 +77,8 @@ Future<Dialog?> showImageViewerPager(
                       easyImageProvider: imageProvider,
                       pageController: pageController),
                   Positioned(
-                      top: 5,
-                      right: 5,
+                      top: 25,
+                      right: 25,
                       child: IconButton(
                         icon: const Icon(Icons.close),
                         color: Colors.white,
@@ -93,10 +91,10 @@ Future<Dialog?> showImageViewerPager(
                                 pageController.page?.round() ?? 0);
                           }
 
-                          if (immersive) {
-                            SystemChrome.setEnabledSystemUIMode(
-                                SystemUiMode.edgeToEdge);
-                          }
+                          // if (immersive) {
+                          //   SystemChrome.setEnabledSystemUIMode(
+                          //       SystemUiMode.edgeToEdge);
+                          // }
                           if (internalPageChangeListener != null) {
                             pageController
                                 .removeListener(internalPageChangeListener);
